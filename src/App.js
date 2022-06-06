@@ -1,5 +1,4 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 import Header from './components/header';
 import MainContent from './components/mainContent';
 import Footer from './components/footer'
