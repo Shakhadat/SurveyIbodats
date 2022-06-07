@@ -7,12 +7,7 @@ import img4 from "../assets/My_project.jpg";
 
 export default function () {
   const [answers, setAnswers] = useState("");
-  const [tipfirst, setTip1] = useState(0);
-  const [tipsec, setTip2] = useState(0);
-  const [tipthird, setTip3] = useState(0);
-  const [tipfour, setTip4] = useState(0);
-  const [tipfife, setTip5] = useState(0);
-  const [tipsix, setTip6] = useState(0);
+  const [result, setResult] = useState([]);
   let takeAnswer = ["0a"];
   let data = [
     {
@@ -325,13 +320,6 @@ export default function () {
   ];
   let tests = "";
 
-  
-  
-  
-  
-  
-  
-
   // const handleChange = (e) => {
   //   if (answers == []) {
   //     takeAnswer.push({ num: e.target.name, ans: e.target.value });
@@ -349,7 +337,7 @@ export default function () {
   // };
   const getAnswer = (variant, index) => {
     let boolean = true;
-    let count = 0;
+    // let count = 0;
     for (let i = 0; i < takeAnswer.length; i++) {
       console.log(takeAnswer);
       console.log(takeAnswer[i], index);
@@ -363,67 +351,36 @@ export default function () {
     }
   };
 
+  let ball = [0, 0, 0, 0, 0, 0];
   const showAnswer = () => {
     console.log(takeAnswer);
     tests = takeAnswer.toString().slice(3);
     console.log(tests);
     setAnswers(tests);
-    let tip1 = 0;
-    let tip2 = 0;
-    let tip3 = 0;
-    let tip4 = 0;
-    let tip5 = 0;
-    let tip6 = 0;
-    for (let i = 0; i <= takeAnswer.length; i++) {
-   
-      typeProf.map((item) => {
-        if (item.profname == `Aniq yo‘nalgan tip` && item.keeys.includes(i))
-         { tip1++;
-          setTip1(tip1);
-        }
-        if (item.profname == `Aqliy salohiyatli tip` && item.keeys.includes(i))
-          {tip2++;
-          setTip2(tip2);}
-        if (
-          item.profname == `Jamiyatga yo‘nalgan tip` &&
-          item.keeys.includes(i)
-        )
-          {tip3++;
-          setTip3(tip3);}
-        if (
-          item.profname == `Shartli (atrofidagilar ta'siridagi) tip` &&
-          item.keeys.includes(i)
-        )
-         {tip4++;
-          setTip4(tip4);} 
 
-        if (item.profname == `Tadbirkorlik tipi` && item.keeys.includes(i))
-          {tip5++;
-          setTip5(tip5);}
-        if (
-          item.profname == `Ijodkorlik (kreativlik) tipi` &&
-          item.keeys.includes(i)
-        )
-          {tip6++;
-          setTip6(tip6);}
+    for (let i in takeAnswer) {
+      console.log(i);
+      typeProf.map((el, index) => {
+        if (el.keeys.includes(takeAnswer[i])) {
+          ball[index] = ball[index] + 1;
+        }
       });
     }
-
-   
-    
-    
-   
-    
-    
-    console.log("tiparr", [
-      tipfirst,
-      tipsec,
-      tipthird,
-      tipfour,
-      tipfife,
-      tipsix,
-    ]);
+    console.log("ball", ball);
+    setResult(ball);
   };
+  //max
+
+  let max = result[0];
+  let maxIndex = 0;
+
+  for (let i = 1; i < result.length; i++) {
+    if (result[i] > max) {
+      maxIndex = i;
+      max = result[i];
+    }
+  }
+  console.log("maxIn", maxIndex);
 
   return (
     <div className="container">
@@ -653,6 +610,29 @@ export default function () {
           answer
         </button>
         <p>Javob kaliti: {answers}</p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Yo'nalish tipi</th>
+              <th scope="col">to'plagan ball</th>
+            </tr>
+          </thead>
+          <tbody>
+            {result.map((el, index) => {
+              return (
+                <tr>
+                  <th scope="row"></th>
+                  <td>#{index + 1} tip</td>
+                  <td>{el} ball</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+        <p>
+          Maksimal ball:{max}ball, #{maxIndex + 1} tipga tegishli
+        </p>
         {/* kalitlar */}
         <div class="accordion" id="accordionExample">
           <div class="accordion-item">
