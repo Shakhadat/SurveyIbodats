@@ -325,12 +325,12 @@ export default function () {
   ];
   let tests = "";
 
-  let tip1 = 0;
-  let tip2 = 0;
-  let tip3 = 0;
-  let tip4 = 0;
-  let tip5 = 0;
-  let tip6 = 0;
+  
+  
+  
+  
+  
+  
 
   // const handleChange = (e) => {
   //   if (answers == []) {
@@ -368,39 +368,53 @@ export default function () {
     tests = takeAnswer.toString().slice(3);
     console.log(tests);
     setAnswers(tests);
-
+    let tip1 = 0;
+    let tip2 = 0;
+    let tip3 = 0;
+    let tip4 = 0;
+    let tip5 = 0;
+    let tip6 = 0;
     for (let i = 0; i <= takeAnswer.length; i++) {
+   
       typeProf.map((item) => {
         if (item.profname == `Aniq yo‘nalgan tip` && item.keeys.includes(i))
-          tip1++;
+         { tip1++;
+          setTip1(tip1);
+        }
         if (item.profname == `Aqliy salohiyatli tip` && item.keeys.includes(i))
-          tip2++;
+          {tip2++;
+          setTip2(tip2);}
         if (
           item.profname == `Jamiyatga yo‘nalgan tip` &&
           item.keeys.includes(i)
         )
-          tip3++;
+          {tip3++;
+          setTip3(tip3);}
         if (
           item.profname == `Shartli (atrofidagilar ta'siridagi) tip` &&
           item.keeys.includes(i)
         )
-          tip4++;
+         {tip4++;
+          setTip4(tip4);} 
+
         if (item.profname == `Tadbirkorlik tipi` && item.keeys.includes(i))
-          tip5++;
+          {tip5++;
+          setTip5(tip5);}
         if (
           item.profname == `Ijodkorlik (kreativlik) tipi` &&
           item.keeys.includes(i)
         )
-          tip6++;
+          {tip6++;
+          setTip6(tip6);}
       });
     }
 
-    setTip1(tip1);
-    setTip2(tip2);
-    setTip3(tip3);
-    setTip4(tip4);
-    setTip5(tip5);
-    setTip6(tip6);
+   
+    
+    
+   
+    
+    
     console.log("tiparr", [
       tipfirst,
       tipsec,
